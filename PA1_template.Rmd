@@ -70,7 +70,7 @@ ggplot(data.daily, aes(x=steps)) +
 ```
 
 
-```{r daily.stats , echo=FALSE}
+```{r daily.stats}
 mean <- mean(data.daily$steps, na.rm=TRUE)
 median <- median(data.daily$steps, na.rm=TRUE)
 ```
@@ -97,7 +97,7 @@ ggplot(data.activity, aes(time,steps, group=1)) +
 ```
 
 
-```{r act.max , echo=FALSE}
+```{r act.max}
 max <- format(subset(data.activity, steps == max(steps))$time, "%R")
 ```
 The average-daily 5-minute interval with most activity count starts at `r max`.
@@ -105,7 +105,7 @@ The average-daily 5-minute interval with most activity count starts at `r max`.
 
 ## 4. Missing Values
 
-```{r count.NA , echo=FALSE}
+```{r count.NA}
 NAnum <- sum(is.na(data$steps))
 ```
 The data has `r NAnum` missing observations (NA). For those values several
@@ -125,7 +125,7 @@ data.fill$steps[is.na(data.fill$steps)] <- data.fill$avg[is.na(data.fill$steps)]
 ```
 
 
-```{r check.NA , echo=FALSE}
+```{r check.NA}
 NAnum.new <- sum(is.na(data.fill$steps))
 ```
 The new data has `r NAnum.new` missing observations.
@@ -144,7 +144,7 @@ ggplot(data.f.daily, aes(x=steps)) +
 ```
 
 
-```{r fill.daily.stats, echo=FALSE}
+```{r fill.daily.stats}
 mean.f <- format(mean(data.f.daily$steps, na.rm=TRUE), scientific=FALSE)
 median.f <- format(median(data.f.daily$steps, na.rm=TRUE), scientific=FALSE)
 ```

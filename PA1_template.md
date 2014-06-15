@@ -83,6 +83,10 @@ ggplot(data.daily, aes(x=steps)) +
 
 
 
+```r
+mean <- mean(data.daily$steps, na.rm=TRUE)
+median <- median(data.daily$steps, na.rm=TRUE)
+```
 The daily-step count average is 9354.2295, and the median 10395.
   
 
@@ -111,12 +115,18 @@ ggplot(data.activity, aes(time,steps, group=1)) +
 
 
 
+```r
+max <- format(subset(data.activity, steps == max(steps))$time, "%R")
+```
 The average-daily 5-minute interval with most activity count starts at 08:35.
   
 
 ## 4. Missing Values
 
 
+```r
+NAnum <- sum(is.na(data$steps))
+```
 The data has 2304 missing observations (NA). For those values several
 fill-in strategies may be applied:
 - input the day average or median
@@ -136,6 +146,9 @@ data.fill$steps[is.na(data.fill$steps)] <- data.fill$avg[is.na(data.fill$steps)]
 
 
 
+```r
+NAnum.new <- sum(is.na(data.fill$steps))
+```
 The new data has 0 missing observations.
 
 ### Recalculate Steps per Day
@@ -156,6 +169,10 @@ ggplot(data.f.daily, aes(x=steps)) +
 
 
 
+```r
+mean.f <- format(mean(data.f.daily$steps, na.rm=TRUE), scientific=FALSE)
+median.f <- format(median(data.f.daily$steps, na.rm=TRUE), scientific=FALSE)
+```
 The new daily-step count average is 10766, and the median 10766.  
 
 By means of this transformation, outlier (missing) values have been substituted
